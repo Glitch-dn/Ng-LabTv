@@ -1,0 +1,44 @@
+// 🎨 PALETTE
+$color-bg: #141414;            // sfondo dark (non nero pieno)
+$color-surface: #0c0c0c;       // card / pannelli
+$color-text: #ffffff;          // testo primario
+$color-muted: #a5a5a5;            // testo secondario
+
+// 🌈 ACCENTI NEON
+$accent-green: #28d380;        // verde neon
+$accent-orange: #feba3c;       // arancio neon
+$accent-shadow:   -2px -2px 8px rgba($accent-orange, 0.6),
+                  2px  2px 8px rgba($accent-green, 0.6);
+
+// ✨ EFFETTI
+$shadow-elev: 0 4px 12px rgba(0,0,0,0.5);
+$radius: 12px;
+$transition: 0.25s ease;
+
+// 🧹 RESET BASE
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: $color-text;
+  text-decoration: none;
+  transition: color $transition;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}

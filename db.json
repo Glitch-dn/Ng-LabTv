@@ -1,0 +1,32 @@
+{
+  "users": [],
+  "profiles": [
+    {
+      "id": 1,
+      "firstName": "Mario",
+      "lastName": "Rossi",
+      "username": "mrossi",
+      "email": "mario@example.com",
+      "phone": "+39333111222",
+      "address": "Via Verdi 10, Roma",
+      "birthdate": "1990-05-12",
+      "password": "FakeHash123!",
+      "avatar": "profile1",
+      "privacy": true
+    },
+    {
+      "firstName": "Daniele",
+      "lastName": "Gambucci",
+      "username": "Dani",
+      "email": "dani.dani@dani.it",
+      "phone": "+393331212212",
+      "address": "via trenta poppe, 5",
+      "birthdate": "1990-11-21",
+      "password": "Ciaociao21",
+      "avatar": "profile5",
+      "privacy": true,
+      "id": 2
+    }
+  ],
+  "films-acquistati": []
+}

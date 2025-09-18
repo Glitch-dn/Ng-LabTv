@@ -1,0 +1,136 @@
+<app-header></app-header>
+
+<section class="form-container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Crea un nuovo profilo</h1>
+    <div class="form-wrapper">
+      <div class="form-groups">
+        <label>
+          Nome
+          <input formControlName="firstName" type="text" />
+          <small
+            *ngIf="
+              form.get('firstName')?.invalid && form.get('firstName')?.touched
+            "
+          >
+            Inserisci un nome valido (solo lettere).
+          </small>
+        </label>
+
+        <label>
+          Cognome
+          <input formControlName="lastName" type="text" />
+          <small
+            *ngIf="
+              form.get('lastName')?.invalid && form.get('lastName')?.touched
+            "
+          >
+            Inserisci un cognome valido (solo lettere).
+          </small>
+        </label>
+
+        <label>
+          Nome utente
+          <input formControlName="username" type="text" />
+          <small
+            *ngIf="
+              form.get('username')?.invalid && form.get('username')?.touched
+            "
+          >
+            3–20 caratteri, solo lettere/numeri.
+          </small>
+        </label>
+
+        <label>
+          Email
+          <input formControlName="email" type="email" />
+          <small
+            *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+          >
+            Inserisci una E-mail valida.
+          </small>
+        </label>
+
+        <label>
+          Numero di telefono
+          <input formControlName="phone" type="tel" />
+          <small
+            *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched"
+          >
+            Inserisci un numero valido.
+          </small>
+        </label>
+      </div>
+
+      <div class="form-groups">
+        <label>
+          Indirizzo
+          <input formControlName="address" type="text" />
+          <small
+            *ngIf="form.get('address')?.invalid && form.get('address')?.touched"
+          >
+            Inserisci un indirizzo.
+          </small>
+        </label>
+
+        <label>
+          Data di nascita
+          <input formControlName="birthdate" type="date" />
+          <small
+            *ngIf="
+              form.get('birthdate')?.invalid && form.get('birthdate')?.touched
+            "
+          >
+            Controlla di aver inserito la tua data di nascita.
+          </small>
+        </label>
+
+        <label>
+          Password
+          <input formControlName="password" type="password" />
+          <small
+            *ngIf="
+              form.get('password')?.invalid && form.get('password')?.touched
+            "
+          >
+            Min 8 caratteri, 1 maiuscola, 1 numero.
+          </small>
+        </label>
+
+        <label>
+          Conferma password
+          <input formControlName="confirmPassword" type="password" />
+          <small
+            *ngIf="
+              form.hasError('passwordMismatch') &&
+              form.get('confirmPassword')?.touched
+            "
+          >
+            Le password non coincidono.
+          </small>
+        </label>
+        <label>
+          Avatar
+          <select formControlName="avatar">
+            <option *ngFor="let a of avatars" [value]="a">{{ a }}</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="avatar-preview">
+      <p>Anteprima avatar:</p>
+      <img
+        [src]="'assets/avatars/' + form.value.avatar + '.png'"
+        alt="Avatar"
+      />
+    </div>
+
+    <label class="privacy">
+      <input type="checkbox" formControlName="privacy" />
+      Accetto i <a href="#">termini e condizioni</a>
+    </label>
+
+    <button type="submit" [disabled]="form.invalid">Salva</button>
+  </form>
+</section>

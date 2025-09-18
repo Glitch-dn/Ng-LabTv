@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'styles/variables';
+
+// 🌍 CARD COMUNE
+.card {
+  background: $color-surface;
+  border-radius: $radius;
+  box-shadow: $shadow-elev;
+  padding: 16px;
+  transition: transform $transition, box-shadow $transition;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+  }
+}
+
+// 🌍 BOTTONI
+button {
+  background: $accent-green;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: $radius;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background $transition, transform $transition;
+
+  &:hover {
+    background: $accent-orange;
+    transform: scale(1.05);
+  }
+
+  &:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+}
+
+// 🌍 INPUT & SELECT
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: $radius;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #222;
+  color: $color-text;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: $accent-green;
+    outline: none;
+    box-shadow: 0 0 8px $accent-green;
+  }
+}

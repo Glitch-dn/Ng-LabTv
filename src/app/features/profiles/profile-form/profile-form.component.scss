@@ -1,0 +1,103 @@
+@import '../../../../styles/variables';
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  form {
+    margin-top: 85px;
+    background: $color-surface;
+    padding: 1.5rem;
+    border-radius: $radius;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: $accent-shadow;
+
+    .form-wrapper {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      .form-groups {
+        flex: 1 1 45%;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: $color-text;
+    }
+
+    .form-groups {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+
+      label {
+        color: $color-text;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-radius: $radius;
+        background: #222;
+        color: $color-text;
+        margin-top: 0.10rem;
+      }
+
+      small {
+        color: $accent-orange;
+        font-size: 0.8rem;
+      }
+    }
+
+    .avatar-preview {
+      text-align: center;
+      margin: 1rem 0;
+
+      img {
+        width: 120px;
+        height: 120px;
+        border-radius: $radius;
+        border: 2px solid $accent-orange;
+      }
+    }
+
+    .privacy {
+      align-items: center;
+      font-size: 0.9rem;
+
+      a {
+        color: $accent-orange;
+        margin-left: 0.25rem;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: $accent-orange;
+      border: none;
+      border-radius: $radius;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.852);
+
+      &:disabled {
+        background: gray;
+        color: $color-muted;
+        text-shadow: none;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<app-header></app-header>
+<main class="profiles">
+  <h1>Chi sta guardando?</h1>
+
+  <div class="profiles-grid">
+    <!-- Profili esistenti -->
+    <a class="profile-card" *ngFor="let p of profiles" (click)="enter(p)">
+      <img [src]="avatarUrl(p.avatar)" [alt]="p.username" />
+      <span>{{ p.username }}</span>
+    </a>
+
+    <!-- Nuovo profilo -->
+    <a class="profile-card new" [routerLink]="['/profiles/new']">
+      <div class="plus">+</div>
+      <span>Nuovo profilo</span>
+    </a>
+  </div>
+</main>
