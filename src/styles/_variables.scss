@@ -4,12 +4,6 @@ $transition: 0.25s ease;
 
 $text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 
-$poster-gradient: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-
 
 /// 🎨 Tema base (dark mode di default)
 :root {
@@ -27,9 +21,9 @@ $poster-gradient: linear-gradient(
   // Ombre accenti
   --accent-shadow: -2px -2px 10px rgba(229, 57, 53, 0.6),
                    2px  2px 10px rgba(239, 83, 80, 0.6);
-
   --accent-shadow-up: -4px -4px 14px rgba(229, 57, 53, 0.6),
                       4px  4px 14px rgba(239, 83, 80, 0.6);
+  --color-search: rgba(213, 0, 0, 0.15);
 
   // Hero
   --hero-title-color: #fff;
@@ -41,42 +35,53 @@ $poster-gradient: linear-gradient(
     rgba(0, 0, 0, 0.7) 20%,
     rgba(0, 0, 0, 0.5) 40%,
     rgba(0, 0, 0, 0.3) 70%,
-    transparent 100%
+    transparent 100%);
+
+  // Poster 
+    --poster-gradient: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.85) 100%
   );
 }
 
 
 // ☀️ Light mode override (TEAL palette)
 body.light-theme {
-  --color-bg: #e9f2f1;        // verde acqua chiarissimo
-  --color-surface: #ffffff;   // superfici bianche pulite
-  --color-text: #222;         // testo quasi nero
-  --color-muted: #667;        // testo secondario freddo
-  --color-link-hover: #009688;    
-  --light-link-hover: rgba(0, 150, 136, 0.8);
+  --color-bg: #e6f5f1;
+  --color-surface: #ffffff;
+  --color-text: #1f2a25;
+  --color-muted: #5c6f68;
+  --accent-primary: rgb(0, 121, 107);
+  --accent-secondary: #48a999;
 
-  // Accenti (TEAL)
-  --accent-primary: #009688;   // teal principale
-  --accent-secondary: #4db6ac; // teal soft
+// ombre e accenti
+  --accent-shadow: -2px -2px 10px rgba(0, 121, 107, 0.4),
+                  2px  2px 10px rgba(72, 169, 153, 0.4);
 
-  // Ombre accenti
-  --accent-shadow: -2px -2px 10px rgba(0, 150, 136, 0.4),
-                   2px  2px 10px rgba(77, 182, 172, 0.4);
+  --accent-shadow-up: -4px -4px 14px rgba(0, 121, 107, 0.4),
+                    4px  4px 14px rgba(72, 169, 153, 0.4);
+  --light-link-hover: #008771;
+  --color-search: rgba(0, 121, 107, 0.15);
 
-  --accent-shadow-up: -4px -4px 14px rgba(0, 150, 136, 0.4),
-                      4px  4px 14px rgba(77, 182, 172, 0.4);
 
   // Hero
-  --hero-title-color: #111;
-  --hero-overview-color: #2b2b2b;
-  --hero-date-color: #555;
+  --hero-title-color: #2e3f38;
+  --hero-overview-color: #4f4f4f;
+  --hero-date-color: #404040;
   --hero-gradient: linear-gradient(
-    to top,
-    rgba(233, 242, 241, 0.95) 0%,
-    rgba(233, 242, 241, 0.7) 30%,
-    rgba(233, 242, 241, 0.4) 60%,
-    transparent 100%
-  );
+  to top,
+  rgba(0, 121, 107, 0.35) 0%,  
+  rgba(230, 245, 241, 0.7) 40%,
+  transparent 100%
+);
+  // Poster 
+  --poster-gradient: linear-gradient(
+  to left,
+  rgba(0, 121, 107, 0.35) 0%, 
+  rgba(0, 0, 0, 0.75) 100%
+);
+  
 }
 
 

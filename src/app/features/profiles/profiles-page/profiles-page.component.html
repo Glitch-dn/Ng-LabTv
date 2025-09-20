@@ -1,18 +1,33 @@
 <app-header></app-header>
+<app-poster-background
+  darkSrc="./../../../../assets/back.jpg"
+  lightSrc="./../../../../assets/back-light.jpg"
+></app-poster-background>
 <main class="profiles">
   <h1>Chi sta guardando?</h1>
 
   <div class="profiles-grid">
     <!-- Profili esistenti -->
-    <a class="profile-card" *ngFor="let p of profiles" (click)="enter(p)">
+    <div
+      class="profile-card"
+      *ngFor="let p of profiles; let i = index"
+      (click)="enter(p)"
+      [ngStyle]="{ 'animation-delay': i * 0.1 + 's' }"
+    >
       <img [src]="avatarUrl(p.avatar)" [alt]="p.username" />
       <span>{{ p.username }}</span>
-    </a>
+    </div>
 
     <!-- Nuovo profilo -->
-    <a class="profile-card new" [routerLink]="['/profiles/new']">
-      <div class="plus">+</div>
-      <span>Nuovo profilo</span>
-    </a>
+    <div
+      class="profile-card new"
+      routerLink="/profiles/new"
+      [ngStyle]="{ 'animation-delay': profiles.length * 0.1 + 's' }"
+    >
+      <div class="hover">
+        <div class="plus">+</div>
+        <span>Nuovo profilo</span>
+      </div>
+    </div>
   </div>
 </main>

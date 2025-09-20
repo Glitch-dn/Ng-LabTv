@@ -1,3 +1,87 @@
-<header class="app-header">
-  <img src="../../../assets/logo.png" alt="LabTV" class="logo" />
+<header [class.scrolled]="scrollStrength > 0" [class.burger-open]="burgerOpen">
+  <div class="left">
+    <img
+      [src]="
+        (theme.isDarkMode$ | async)
+          ? '../../../assets/logo.png'
+          : '../../../assets/logo-light.png'
+      "
+      alt="LabTV"
+      class="logo"
+    />
+
+    <!-- 🍔 Burger subito dopo il logo -->
+    <button
+      class="burger"
+      *ngIf="!hideLinks"
+      (click)="burgerOpen = !burgerOpen"
+    >
+      ☰
+    </button>
+  </div>
+
+  <!-- Nav links desktop -->
+  <nav class="nav-links" *ngIf="!hideLinks">
+    <a
+      routerLink="/home"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a routerLink="/films" routerLinkActive="active">Film</a>
+    <a routerLink="/series" routerLinkActive="active">Serie TV</a>
+    <a routerLink="/games" routerLinkActive="active">Games</a>
+  </nav>
+
+  <div class="actions">
+    <!-- 🔍 Search -->
+    <ng-container *ngIf="!hideSearch">
+      <div class="search-container" [class.open]="searchOpen">
+        <input
+          type="text"
+          [(ngModel)]="query"
+          placeholder="Cerca..."
+          (keydown.enter)="onSearch()"
+        />
+        <button class="search-btn" (click)="toggleSearch()">
+          <svg class="icon" viewBox="0 0 24 24">
+            <circle
+              cx="11"
+              cy="11"
+              r="8"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+            <line
+              x1="16"
+              y1="16"
+              x2="22"
+              y2="22"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </ng-container>
+  </div>
 </header>
+
+<!-- 🌙/☀️ Switch tema fisso -->
+<div class="theme-toggle-fixed" (click)="theme.toggle()">
+  <div class="switch" [class.active]="theme.isDarkMode$ | async">
+    <div class="thumb"></div>
+  </div>
+</div>
+
+<!-- Burger dropdown -->
+<nav class="burger-menu" [class.open]="burgerOpen && !hideLinks">
+  <a routerLink="/home" routerLinkActive="active">Home</a>
+  <a routerLink="/films" routerLinkActive="active">Film</a>
+  <a routerLink="/series" routerLinkActive="active">Serie TV</a>
+  <a routerLink="/games" routerLinkActive="active">Games</a>
+</nav>
+
+<!-- Linea -->
+<div class="header-line" [class.open]="burgerOpen"></div>

@@ -1,22 +1,23 @@
 @import 'styles/variables';
+@import 'styles/animations';
 
 // 🌍 CARD COMUNE
 .card {
-  background: $color-surface;
+  background: var(--color-surface);
   border-radius: $radius;
-  box-shadow: $shadow-elev;
+  box-shadow: var(--accent-shadow);
   padding: 16px;
   transition: transform $transition, box-shadow $transition;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+    box-shadow: var(--accent-shadow);
   }
 }
 
 // 🌍 BOTTONI
 button {
-  background: $accent-green;
+  background: var(--accent-primary);
   color: #fff;
   border: none;
   padding: 10px 16px;
@@ -26,7 +27,7 @@ button {
   transition: background $transition, transform $transition;
 
   &:hover {
-    background: $accent-orange;
+    background: var(--accent-secondary);
     transform: scale(1.05);
   }
 
@@ -43,12 +44,12 @@ input, select {
   border-radius: $radius;
   border: 1px solid rgba(255,255,255,0.1);
   background: #222;
-  color: $color-text;
+  color: var(--color-text);
   font-size: 1rem;
 
   &:focus {
-    border-color: $accent-green;
+    border-color: var(--accent-primary);
     outline: none;
-    box-shadow: 0 0 8px $accent-green;
+    box-shadow: 0 0 8px var(--accent-primary);
   }
 }

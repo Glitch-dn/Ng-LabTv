@@ -1,0 +1,37 @@
+<section class="hero-banner" *ngIf="item">
+  <!-- Background -->
+  <div
+    class="hero-bg"
+    *ngIf="!playing"
+    [style.background-image]="backgroundImage"
+  ></div>
+
+  <!-- Trailer embed -->
+  <div class="hero-video" *ngIf="playing">
+    <iframe
+      [src]="videoUrl"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <!-- Overlay sempre presente -->
+  <div class="hero-overlay"></div>
+
+  <!-- Overlay contenuti -->
+  <div class="hero-content">
+    <h1 class="hero-title">{{ item.title }}</h1>
+    <p class="hero-overview" *ngIf="hasOverview">{{ item.overview }}</p>
+    <p class="hero-date" *ngIf="item.releaseDate">
+      Uscita: {{ item.releaseDate }}
+    </p>
+
+    <div class="hero-buttons">
+      <button class="play" (click)="toggleTrailer()">
+        {{ playing ? "⏹ Stop" : "▶ Play" }}
+      </button>
+      <button class="info">ℹ Dettagli</button>
+    </div>
+  </div>
+</section>

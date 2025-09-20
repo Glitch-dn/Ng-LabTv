@@ -1,0 +1,109 @@
+@import '../../../styles/variables';
+
+.hero-banner {
+  position: relative;
+  height: 80vh;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  // 👇 overlay gradient globale, sopra immagine o video
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--hero-gradient);
+    z-index: 1;           // sopra immagine e video
+    pointer-events: none;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: top;
+    z-index: 0;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 0;
+      background: black;
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;   // sopra overlay
+    max-width: 45%;
+    margin-bottom: 5vh;
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      color: var(--hero-title-color);
+    }
+
+    .hero-overview {
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      color: var(--hero-overview-color);
+      max-height: 6rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    .hero-date {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      color: var(--hero-date-color);      
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+
+      button {
+        padding: 0.9rem 1.8rem;
+        border: none;
+        border-radius: $radius;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: translate $transition;
+
+        &.play {
+          background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+
+          &:hover {
+            translate: 0 -6px;
+          }
+        }
+
+        &.info {
+          background: var(--accent-secondary);
+
+          &:hover {
+            translate: 0 -6px;
+          }
+        }
+      }
+    }
+  }
+}

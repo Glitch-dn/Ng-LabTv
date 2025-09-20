@@ -1,4 +1,5 @@
 @import '../../../../styles/variables';
+@import '../../../../styles/animations';
 
 .form-container {
   display: flex;
@@ -7,18 +8,22 @@
   min-height: 100vh;
 
   form {
-    margin-top: 85px;
-    background: $color-surface;
+    margin-top: 70px;
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: $radius;
     width: 100%;
     max-width: 550px;
-    box-shadow: $accent-shadow;
+    box-shadow: var(--accent-shadow);
+
+    // 👇 unica animazione ingresso centralizzata
+    @include slide-up(0.6s);
 
     .form-wrapper {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
+
       .form-groups {
         flex: 1 1 45%;
       }
@@ -27,7 +32,7 @@
     h1 {
       text-align: center;
       margin-bottom: 1.5rem;
-      color: $color-text;
+      color: var(--color-text);
     }
 
     .form-groups {
@@ -37,7 +42,7 @@
       margin-bottom: 1rem;
 
       label {
-        color: $color-text;
+        color: var(--color-text);
       }
 
       input,
@@ -46,13 +51,13 @@
         padding: 0.5rem;
         border: none;
         border-radius: $radius;
-        background: #222;
-        color: $color-text;
+        background: var(--color-bg);
+        color: var(--color-text);
         margin-top: 0.10rem;
       }
 
       small {
-        color: $accent-orange;
+        color: var(--accent-secondary);
         font-size: 0.8rem;
       }
     }
@@ -65,7 +70,7 @@
         width: 120px;
         height: 120px;
         border-radius: $radius;
-        border: 2px solid $accent-orange;
+        border: 2px solid var(--accent-secondary);
       }
     }
 
@@ -74,7 +79,7 @@
       font-size: 0.9rem;
 
       a {
-        color: $accent-orange;
+        color: var(--accent-secondary);
         margin-left: 0.25rem;
       }
     }
@@ -82,7 +87,7 @@
     button {
       width: 100%;
       padding: 0.75rem;
-      background: $accent-orange;
+      background: var(--accent-secondary);
       border: none;
       border-radius: $radius;
       color: #fff;
@@ -94,7 +99,7 @@
 
       &:disabled {
         background: gray;
-        color: $color-muted;
+        color: var(--color-muted);
         text-shadow: none;
         cursor: not-allowed;
       }

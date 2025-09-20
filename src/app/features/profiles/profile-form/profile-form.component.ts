@@ -11,11 +11,12 @@ import {
 import { Router } from '@angular/router';
 import { ProfilesService, Profile } from '../../../core/services/profiles.service';
 import { HeaderComponent } from '../../../shared/header/header.component';
+import { PosterBackgroundComponent } from "../../../shared/poster-background/poster-background.component";
 
 @Component({
   selector: 'app-profile-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, PosterBackgroundComponent],
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.scss']
 })

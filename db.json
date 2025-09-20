@@ -26,6 +26,32 @@
       "avatar": "profile5",
       "privacy": true,
       "id": 2
+    },
+    {
+      "firstName": "Giulia",
+      "lastName": "Poppi",
+      "username": "MsFortune",
+      "email": "ciacci@ciacci.ciacci",
+      "phone": "333 1212211",
+      "address": "via Ciacci, 22, RM",
+      "birthdate": "2025-09-27",
+      "password": "Ciacciciacci2",
+      "avatar": "profile3",
+      "privacy": true,
+      "id": 3
+    },
+    {
+      "firstName": "Mary",
+      "lastName": "Cio",
+      "username": "CIO",
+      "email": "dam@dam.it",
+      "phone": "3332121211",
+      "address": "via tre 32",
+      "birthdate": "2025-09-04",
+      "password": "Ciaociao21",
+      "avatar": "profile4",
+      "privacy": true,
+      "id": 4
     }
   ],
   "films-acquistati": []

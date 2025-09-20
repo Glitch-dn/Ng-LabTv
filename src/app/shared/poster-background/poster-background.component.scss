@@ -16,7 +16,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: $poster-gradient; // 👈 già definito nelle tue variabili
+    background: var(--poster-gradient); // 👈 già definito nelle tue variabili
     mix-blend-mode: multiply;
   }
 }

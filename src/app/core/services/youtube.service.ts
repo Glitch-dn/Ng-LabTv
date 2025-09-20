@@ -1,21 +1,39 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { YouTubeSearchResponse } from '../models/youtube-video.model';
 
 @Injectable({ providedIn: 'root' })
-export class YoutubeService {
-  private baseUrl = 'https://www.googleapis.com/youtube/v3/search';
+export class YouTubeService {
+  private http = inject(HttpClient);
   private apiKey = environment.youtubeApiKey;
+  private baseUrl = 'https://www.googleapis.com/youtube/v3/search';
 
-  constructor(private http: HttpClient) {}
+  /**
+   * Cerca il trailer italiano per un film e restituisce il videoId
+   * @param title titolo del film
+   * @returns Observable<string | null> → videoId oppure null se non trovato
+   */
+  searchTrailerItalian(title: string): Observable<string | null> {
+    const query = `${title} trailer italiano`;
 
-  searchTrailer(title: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}?part=snippet&maxResults=1&q=${encodeURIComponent(title + ' trailer')}&key=${this.apiKey}`);
-  }
+    const params = new HttpParams()
+      .set('key', this.apiKey)
+      .set('part', 'snippet')
+      .set('q', query)
+      .set('type', 'video')
+      .set('maxResults', '1')
+      .set('regionCode', 'IT')
+      .set('relevanceLanguage', 'it');
 
-  /** Restituisce URL pronto per embed */
-  buildEmbedUrl(videoId: string): string {
-    return `https://www.youtube.com/embed/${videoId}?autoplay=1&start=8`;
+    return this.http.get<YouTubeSearchResponse>(this.baseUrl, { params }).pipe(
+      map(res => {
+        if (!res.items || res.items.length === 0) {
+          return null;
+        }
+        return res.items[0].id.videoId || null;
+      })
+    );
   }
 }
