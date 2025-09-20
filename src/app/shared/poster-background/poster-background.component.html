@@ -1,0 +1,9 @@
+<div class="poster-bg">
+  <img
+    [src]="(isDarkMode$ | async) ? darkSrc : lightSrc"
+    alt=""
+    class="poster-bg__image"
+  />
+  <div class="poster-bg__overlay"></div>
+  <ng-content></ng-content>
+</div>
