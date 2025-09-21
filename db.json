@@ -52,6 +52,19 @@
       "avatar": "profile4",
       "privacy": true,
       "id": 4
+    },
+    {
+      "firstName": "Daniele",
+      "lastName": "Gambucci",
+      "username": "Dani2",
+      "email": "dani@add.it",
+      "phone": "3330009876",
+      "address": "via tren 97",
+      "birthdate": "2025-09-03",
+      "password": "Poppopoppo0",
+      "avatar": "profile6",
+      "privacy": true,
+      "id": 5
     }
   ],
   "films-acquistati": []

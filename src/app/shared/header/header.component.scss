@@ -15,45 +15,22 @@ header {
   color: var(--color-text);
   transition: background $transition, backdrop-filter $transition;
 
-  // 👇 Blur + gradiente quando scrolli
   &.scrolled {
-    backdrop-filter: blur(12px); // sfocatura consistente
+    backdrop-filter: blur(12px);
     background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0) 0%,        // estremità trasparenti
-      rgba(0, 0, 0, 0.35) 5%,     // inizia presto ma tenue
-      rgba(0, 0, 0, 0.6) 25%,     // pieno già sotto il logo
-      rgba(0, 0, 0, 0.6) 75%,     // resta pieno fino allo switch
-      rgba(0, 0, 0, 0.35) 95%,    // sfuma solo vicino ai bordi
-      rgba(0, 0, 0, 0) 100%       // trasparente agli estremi
-    );
-  
-    // maschera più estesa
-    mask-image: linear-gradient(
-      to right,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 5%,        // entra subito
-      rgba(0, 0, 0, 1) 95%,       // tiene pieno quasi tutto
-      rgba(0, 0, 0, 0) 100%       // dissolve solo in prossimità fine header
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 5%,
-      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0.35) 5%,
+      rgba(0, 0, 0, 0.6) 25%,
+      rgba(0, 0, 0, 0.6) 75%,
+      rgba(0, 0, 0, 0.35) 95%,
       rgba(0, 0, 0, 0) 100%
     );
-    -webkit-mask-composite: destination-in;
-    mask-composite: intersect;
-    transition: background $transition, backdrop-filter $transition;
   }
-  
 
-  // 👇 Background uniforme quando burger è aperto
   &.burger-open {
     backdrop-filter: none;
-    background: rgba(0, 0, 0, 0.9); 
-    transition: background $transition;
+    background: rgba(0, 0, 0, 0.9);
   }
 
   .left {
@@ -79,7 +56,6 @@ header {
       letter-spacing: 1px;
       padding-bottom: 6px;
       position: relative;
-      transition: color $transition;
 
       &::after {
         content: '';
@@ -164,20 +140,24 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color $transition;
 
     .icon {
       width: 22px;
       height: 22px;
       stroke: currentColor;
       color: white;
-      margin-right: 10px;
     }
 
     &:hover {
       color: var(--accent-primary);
     }
   }
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 // 🌙/☀️ Switch fisso
@@ -187,41 +167,6 @@ header {
   right: 3rem;
   z-index: 1500;
   cursor: pointer;
-
-  .switch {
-    width: 50px;
-    height: 26px;
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(4px);
-    position: relative;
-    transition: background $transition, border $transition;
-
-    .thumb {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--color-surface);
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-      position: absolute;
-      top: 1px;
-      left: 1px;
-      transition: transform $transition, background $transition,
-        box-shadow $transition;
-    }
-
-    &.active {
-      background: rgba(213, 0, 0, 0.2);
-      border: 1px solid var(--accent-primary);
-
-      .thumb {
-        transform: translateX(24px);
-        background: var(--accent-primary);
-        box-shadow: var(--accent-shadow)-up;
-      }
-    }
-  }
 }
 
 // linea sotto header
@@ -235,11 +180,6 @@ header {
   background: rgba(255, 255, 255, 0.3);
   z-index: 1200;
   top: 70px;
-  transition: top $transition;
-
-  &.open {
-    top: 254px; // scende insieme al menu burger
-  }
 }
 
 // Burger menu
@@ -253,26 +193,22 @@ header {
   top: 70px;
   left: 0;
   right: 0;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   gap: 1rem;
   z-index: 1400;
   width: 95%;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.9); 
+  background: rgba(0, 0, 0, 0.9);
   opacity: 0;
   transform: translateY(-8px);
-  transition: opacity $transition, transform $transition, max-height $transition, padding $transition; 
+  transition: opacity $transition, transform $transition, max-height $transition;
 
   &.open {
-    max-height: 400px;    // o il valore che ti sta dentro i link
+    max-height: 400px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-    padding-top: 1rem;    // ripristino padding in apertura
-    padding-bottom: 1rem; // (stesso valore che avevi già)
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity $transition, transform $transition;
+    padding: 1rem 2rem;
   }
 
   a {
@@ -283,14 +219,10 @@ header {
     transform: translateY(-4px);
     transition: opacity $transition, transform $transition, color $transition;
   }
-    &.open a {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    &.open a:nth-child(1) { transition-delay: 0.05s; }
-    &.open a:nth-child(2) { transition-delay: 0.10s; }
-    &.open a:nth-child(3) { transition-delay: 0.15s; }
-    &.open a:nth-child(4) { transition-delay: 0.20s; }
+  &.open a {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 991px) {
