@@ -34,8 +34,8 @@
   </nav>
 
   <div class="actions">
-    <!-- 🔍 Search -->
-    <ng-container *ngIf="!hideSearch">
+    <!-- 🔍 Search: sparisce quando burger è aperto -->
+    <ng-container *ngIf="!hideSearch && !burgerOpen">
       <div class="search-container" [class.open]="searchOpen">
         <input
           type="text"
@@ -65,6 +65,37 @@
         </button>
       </div>
     </ng-container>
+
+    <!-- 👤 Profili: sparisce quando burger è aperto -->
+    <div class="profile-container" *ngIf="activeProfile && !burgerOpen">
+      <img
+        class="profile-avatar"
+        [src]="avatarUrl(activeProfile.avatar)"
+        [alt]="activeProfile.username"
+        (click)="toggleProfilesMenu()"
+      />
+
+      <div class="profiles-dropdown" [class.open]="profilesOpen">
+        <div
+          *ngFor="let p of profiles"
+          class="profile-item"
+          [class.active]="p === activeProfile"
+          (click)="selectProfile(p)"
+        >
+          <ng-container *ngIf="p === activeProfile; else smallProfile">
+            <img [src]="avatarUrl(p.avatar)" [alt]="p.username" />
+            <div class="details">
+              <strong>{{ p.username }}</strong>
+              <span>{{ p.email }}</span>
+              <a routerLink="/profile/manage">Gestisci profilo</a>
+            </div>
+          </ng-container>
+          <ng-template #smallProfile>
+            <span>{{ p.username }}</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -76,11 +107,31 @@
 </div>
 
 <!-- Burger dropdown -->
-<nav class="burger-menu" [class.open]="burgerOpen && !hideLinks">
-  <a routerLink="/home" routerLinkActive="active">Home</a>
-  <a routerLink="/films" routerLinkActive="active">Film</a>
-  <a routerLink="/series" routerLinkActive="active">Serie TV</a>
-  <a routerLink="/games" routerLinkActive="active">Games</a>
+<nav class="burger-menu" [class.open]="burgerOpen" [class.hidden]="hideLinks">
+  <a
+    routerLink="/home"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Home</a
+  >
+  <a
+    routerLink="/films"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Film</a
+  >
+  <a
+    routerLink="/series"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Serie TV</a
+  >
+  <a
+    routerLink="/games"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Games</a
+  >
 </nav>
 
 <!-- Linea -->

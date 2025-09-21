@@ -12,7 +12,8 @@
       "birthdate": "1990-05-12",
       "password": "FakeHash123!",
       "avatar": "profile1",
-      "privacy": true
+      "privacy": true,
+      "active": true
     },
     {
       "firstName": "Daniele",
@@ -25,7 +26,8 @@
       "password": "Ciaociao21",
       "avatar": "profile5",
       "privacy": true,
-      "id": 2
+      "id": 2,
+      "active": true
     },
     {
       "firstName": "Giulia",
@@ -38,7 +40,8 @@
       "password": "Ciacciciacci2",
       "avatar": "profile3",
       "privacy": true,
-      "id": 3
+      "id": 3,
+      "active": true
     },
     {
       "firstName": "Mary",
@@ -51,7 +54,8 @@
       "password": "Ciaociao21",
       "avatar": "profile4",
       "privacy": true,
-      "id": 4
+      "id": 4,
+      "active": true
     },
     {
       "firstName": "Daniele",
@@ -64,7 +68,8 @@
       "password": "Poppopoppo0",
       "avatar": "profile6",
       "privacy": true,
-      "id": 5
+      "id": 5,
+      "active": true
     }
   ],
   "films-acquistati": []

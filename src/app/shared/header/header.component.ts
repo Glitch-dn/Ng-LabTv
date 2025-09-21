@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 import { ThemeService } from '../../core/services/theme.service';
 import { MoviesService } from '../../core/services/movies.service';
+import { ProfilesService } from '../../core/services/profiles.service'; // nuovo import
+import { Profile } from '../../core/services/profiles.service'; // nuovo import
 
 @Component({
   selector: 'app-header',
@@ -21,14 +23,23 @@ export class HeaderComponent {
   hideLinks = false;
   hideSearch = false;
 
+  // 🔹 Profili
+  profiles: Profile[] = [];
+  activeProfile: Profile | null = null;
+  profilesOpen = false;
+
   private router = inject(Router);
   public theme = inject(ThemeService);
   private moviesApi = inject(MoviesService);
+  private profilesService = inject(ProfilesService);
 
   constructor() {
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((e: any) => this.updateVisibility(e.urlAfterRedirects));
+
+    // carico i profili
+    this.loadProfiles();
   }
 
   private updateVisibility(url: string) {
@@ -44,13 +55,10 @@ export class HeaderComponent {
     const current = window.scrollY;
     this.scrollStrength = Math.min(current / maxScroll, 1);
 
-    // 👇 chiude la search
     if (this.searchOpen) {
       this.searchOpen = false;
       this.query = '';
     }
-
-    // 👇 chiude anche il burger se aperto
     if (this.burgerOpen) {
       this.burgerOpen = false;
     }
@@ -66,5 +74,30 @@ export class HeaderComponent {
     this.moviesApi.searchMovies(this.query).subscribe(() => {
       this.router.navigate(['/search'], { queryParams: { q: this.query } });
     });
+  }
+
+  // 🔹 PROFILI
+  private loadProfiles() {
+    this.profilesService.list().subscribe((res) => {
+      this.profiles = res;
+      this.activeProfile = this.profiles.find(p => p.active) || this.profiles[0];
+    });
+  }
+
+  selectProfile(profile: Profile) {
+    if (this.activeProfile) this.activeProfile.active = false;
+    profile.active = true;
+    this.activeProfile = profile;
+    this.profilesOpen = false;
+    this.profilesService.updateProfile(profile).subscribe();
+    this.router.navigate(['/home']);
+  }
+
+  toggleProfilesMenu() {
+    this.profilesOpen = !this.profilesOpen;
+  }
+
+  avatarUrl(avatar: string) {
+    return `assets/avatars/${avatar}.png`;
   }
 }
